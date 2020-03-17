@@ -23,3 +23,4 @@ print("Printing size in bytes\n")
 
 print("For each element matrix1: ",matrix1.itemsize,"\n")
 print("For the whole matrix: ",matrix1.nbytes,"\n")
+
