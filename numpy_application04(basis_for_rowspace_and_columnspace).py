@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Mar 19 20:14:35 2020
+Created on Thu Mar 26 11:37:32 2020
 
 @author: Avinash Subhash
 """
-"""The program intakes a matrix of order nxn and outputs the resultant 
-matrix after gauss elimination along with the rank of the matrix"""
+"""The program takes a matrix of order nxn as input 
+and outputs the basis of rowspace and column space"""
 
 
 import numpy as np
 
-sample_row=np.zeros(3)
-#sample_row assigned to check for the complete 0 rows
+
 matrix=np.zeros((3,3))
 matrix2=np.zeros((3,3))
 
@@ -21,9 +20,8 @@ for i in range(0,3):
     for j in range(0,3):
         print("Enter the element[",i+1,"][",j+1,"]:")
         matrix[i][j]=input()
-        print(matrix[i][j],"\n")
-matrix2=matrix     
-"""The matrix value assigned to matrix2 for furthur calculations"""
+matrix2=matrix
+print("Enterd matrix:\n")
 print(matrix2,"\n")        
 
         
@@ -42,16 +40,26 @@ for k in range(2):
                         continue
                     else:
                         matrix[i][j]=matrix[i][j]-(multiple[i]*matrix[k][j])
-                    
-                
-                
-print("Guass eliminated matrix:\n")                
+                        
+                        
+for i in range(3):
+    if matrix[i][i]!=1 and matrix[i][i]!=0:
+        matrix[i]/=matrix[i][i] 
+
+print("Reduced row echlon matrix:\n")             
 print(matrix)
 
-count=0
+""" Basis for Column space"""
+print("Basis for Column space:\n") 
 for i in range(3):
-    if np.all(np.equal(matrix[i],sample_row)):
-        count+=1
-print("The rank of the matrix is ",3-count)
-                
-                
+    if matrix[i][i]==1:
+        print("Column vector:")
+        print(matrix[:,[i]],"\n")
+        
+"""Basis for Row space"""
+print("Basis for Row space:\n")
+
+for i in range(3):
+    if matrix[i][i]==1:
+        print("Row vector:")
+        print(matrix[i],"\n")
